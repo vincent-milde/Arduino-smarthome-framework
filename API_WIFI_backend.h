@@ -8,7 +8,7 @@
 #include <WiFi.h>
 #include <PubSubClient.h>   // Used for MQTT client
 #include "user_input.h"
-
+#include "framework_types.h"
 // MQTT client
 WifiClient espClient;
 PubSubClient client(espClient);
@@ -30,3 +30,10 @@ reconnect
 setup
 loop
 */
+
+
+
+
+void mqtt_callback(const char* topic, mqtt_call* back_t callback){
+    
+}
