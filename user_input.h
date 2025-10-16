@@ -35,10 +35,44 @@
  
 */
 //Add your wifi password here: 
-const char* wifi_ssid = "YOUR_SSID";         // Your WiFi SSID
-const char* wifi_password = "YOUR_PASSWORD"; // Your WiFi Password  
-const char* mqtt_server = "192.160.1.100"; // Your MQTT Broker IP Address
+const char* WIFI_SSID = "YOUR_SSID";         // Your WiFi SSID
+const char* WIFI_PASSWORD = "YOUR_PASSWORD"; // Your WiFi Password  
+const char* MQTT_SERVER = "192.160.1.100"; // Your MQTT Broker IP Address
+#define BAUDRATE 115200 // Baudrate for serial communication
 
+/*
+ 
+   _______  __    _    __  __ ____  _     _____ 
+  | ____\ \/ /   / \  |  \/  |  _ \| |   | ____|
+  |  _|  \  /   / _ \ | |\/| | |_) | |   |  _|  
+  | |___ /  \  / ___ \| |  | |  __/| |___| |___ 
+  |_____/_/\_\/_/   \_\_|  |_|_|   |_____|_____|
+                                                
+ 
+*
+
+Write this in the topic section:
+-----------------------------
+
+void onLedCommand(String payload) {
+  if (payload == "ON") digitalWrite(2, HIGH);
+  else digitalWrite(2, LOW);
+  }
+---------------------------
+
+Write this in the user setup:
+--------------------------------
+void user_setup() {
+  pinMode(2, OUTPUT);
+  mqtt_subscribe("home/test/led", onLedCommand);
+}
+-------------------------------
+
+Serial and wifi connection is already handled in the framework, you may change
+the baudrate in the framework types file
+
+
+*/
 
 /*
  
@@ -50,34 +84,12 @@ const char* mqtt_server = "192.160.1.100"; // Your MQTT Broker IP Address
             |_|               
  
 */
+#define MAX_TOPICS 10 //max number of mqtt topics to be used
 
-/*************************************
- * 
- *              EXAMPLE
- * 
- *************************************
- *
- * 
- * 
- * 
- * 
- * 
- * 
- * 
- * 
- * 
- * 
- * 
- */
-
-
-
-
-
-
-
-
-
+void onLedCommand(String payload) {
+  if (payload == "ON") digitalWrite(2, HIGH);
+  else digitalWrite(2, LOW);
+  }
 
 /*
  
@@ -92,6 +104,8 @@ const char* mqtt_server = "192.160.1.100"; // Your MQTT Broker IP Address
 
 void user_setup() {
   // Add your setup code here
+  pinMode(2, OUTPUT);
+  mqtt_subscribe("home/test/led", onLedCommand);
 }
 
 void user_loop() {
