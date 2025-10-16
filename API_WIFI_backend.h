@@ -34,6 +34,20 @@ loop
 
 
 
-void mqtt_callback(const char* topic, mqtt_call* back_t callback){
-    
+void mqtt_subscribe(const char* topic, mqtt_call* back_t callback){
+  
+}
+
+void mqtt_callback(){
+  
+}
+
+void mqtt_reconnect(){
+  
+}
+void mqtt_setup(){
+  
+}
+void mqtt_loop(){
+  
 }
