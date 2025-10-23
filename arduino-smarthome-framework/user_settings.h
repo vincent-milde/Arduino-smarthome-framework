@@ -34,66 +34,22 @@
                                                  |___/     
  
 */
+
 //Add your wifi password here: 
-const char* wifi_ssid = "YOUR_SSID";         // Your WiFi SSID
-const char* wifi_password = "YOUR_PASSWORD"; // Your WiFi Password  
-const char* mqtt_server = "192.160.1.100"; // Your MQTT Broker IP Address
-
-
-/*
- 
-   _____           _          
-  |_   _|__  _ __ (_) ___ ___ 
-    | |/ _ \| '_ \| |/ __/ __|
-    | | (_) | |_) | | (__\__ \
-    |_|\___/| .__/|_|\___|___/
-            |_|               
- 
-*/
-
-/*************************************
- * 
- *              EXAMPLE
- * 
- *************************************
- *
- * 
- * 
- * 
- * 
- * 
- * 
- * 
- * 
- * 
- * 
- * 
- */
-
-
-
-
-
-
-
-
-
+const char* WIFI_SSID;         // Your WiFi SSID
+const char* WIFI_PASSWORD;     // Your WiFi Password  
+const char* MQTT_SERVER;       // Your MQTT Broker IP Address
+#define BAUDRATE 115200              // Baudrate for serial communication
 
 /*
  
-      _            _       _               _                        ______       _                
-     / \   _ __ __| |_   _(_)_ __   ___   | |    ___   ___  _ __   / / ___|  ___| |_ _   _ _ __   
-    / _ \ | '__/ _` | | | | | '_ \ / _ \  | |   / _ \ / _ \| '_ \ / /\___ \ / _ \ __| | | | '_ \  
-   / ___ \| | | (_| | |_| | | | | | (_) | | |__| (_) | (_) | |_) / /  ___) |  __/ |_| |_| | |_) | 
-  /_/   \_\_|  \__,_|\__,_|_|_| |_|\___/  |_____\___/ \___/| .__/_/  |____/ \___|\__|\__,_| .__/  
-                                                           |_|                            |_|     
+   _____                                            _               _   _   _                 
+  |  ___| __ __ _ _ __ ___   _____      _____  _ __| | __  ___  ___| |_| |_(_)_ __   __ _ ___ 
+  | |_ | '__/ _` | '_ ` _ \ / _ \ \ /\ / / _ \| '__| |/ / / __|/ _ \ __| __| | '_ \ / _` / __|
+  |  _|| | | (_| | | | | | |  __/\ V  V / (_) | |  |   <  \__ \  __/ |_| |_| | | | | (_| \__ \
+  |_|  |_|  \__,_|_| |_| |_|\___| \_/\_/ \___/|_|  |_|\_\ |___/\___|\__|\__|_|_| |_|\__, |___/
+                                                                                    |___/     
  
 */
 
-void user_setup() {
-  // Add your setup code here
-}
-
-void user_loop() {
-  // Add your loop code here
-}
+#define MAX_TOPICS 10 //max number of mqtt topics to be used
