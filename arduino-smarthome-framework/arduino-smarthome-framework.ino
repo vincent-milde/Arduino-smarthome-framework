@@ -1,10 +1,11 @@
-#include "API_WIFI_backend.h"
-#include "user_input.h"
-#include "framework_types.h"
+#include "user_programm.h"
 
 void setup(){
     framework_setup();
+    user_setup();
 }
+
 void loop(){
     framework_loop();
+    user_loop() ;
 }

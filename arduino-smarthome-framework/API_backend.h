@@ -4,15 +4,15 @@
  * 
  */
 
- // Wifi section
+// Wifi section
+
+#pragma once
+
 #include <WiFi.h>
-#include <PubSubClient.h>   // Used for MQTT client
-#include "user_input.h"
+#include <PubSubClient.h>
+#include "user_settings.h" // for MAX_TOPICS and user hooks
 #include "framework_types.h"
 
-// MQTT client
-WifiClient espClient;
-PubSubClient client(espClient);
 
 /*
  
@@ -32,8 +32,29 @@ setup
 loop
 */
 
+// Global variable definitions
+WiFiClient espClient;
+PubSubClient client(espClient);
 mqtt_topic_handler_t handlers[MAX_TOPICS];
 int handlerCount = 0;
+
+/*
+ 
+   __  __  ___ _____ _____   _____                 _   _                 
+  |  \/  |/ _ \_   _|_   _| |  ___|   _ _ __   ___| |_(_) ___  _ __  ___ 
+  | |\/| | | | || |   | |   | |_ | | | | '_ \ / __| __| |/ _ \| '_ \/ __|
+  | |  | | |_| || |   | |   |  _|| |_| | | | | (__| |_| | (_) | | | \__ \
+  |_|  |_|\__\_\|_|   |_|   |_|   \__,_|_| |_|\___|\__|_|\___/|_| |_|___/
+                                                                         
+ 
+*/ 
+/*
+subscribe 
+callback
+reconnect
+setup
+loop
+*/
 
 void mqtt_subscribe(const char* topic, mqtt_callback_t callback) {
   if (handlerCount < MAX_TOPICS) {
@@ -73,11 +94,9 @@ void framework_setup() {
   while (WiFi.status() != WL_CONNECTED) delay(500);
   client.setServer(MQTT_SERVER, 1883);
   client.setCallback(mqtt_callback);
-  user_setup();
 }
 
 void framework_loop() {
   if (!client.connected()) mqtt_reconnect();
   client.loop();
-  user_loop();
 }
