@@ -36,9 +36,9 @@
 */
 
 //Add your wifi password here: 
-const char* WIFI_SSID;         // Your WiFi SSID
-const char* WIFI_PASSWORD;     // Your WiFi Password  
-const char* MQTT_SERVER;       // Your MQTT Broker IP Address
+const char* WIFI_SSID = "YOUR SSID";         // Your WiFi SSID
+const char* WIFI_PASSWORD = "YOUR PASSWORD";     // Your WiFi Password  
+const char* MQTT_SERVER = "YOUR MQTT BROKER";       // Your MQTT Broker IP Address
 #define BAUDRATE 115200              // Baudrate for serial communication
 
 /*
