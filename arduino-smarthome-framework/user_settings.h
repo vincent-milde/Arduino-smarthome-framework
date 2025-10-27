@@ -53,3 +53,12 @@ const char* MQTT_SERVER = "YOUR MQTT BROKER";       // Your MQTT Broker IP Addre
 */
 
 #define MAX_TOPICS 10 //max number of mqtt topics to be used
+
+// MQTT credentials (if used)
+const char* MQTT_USER = "homeassistant";    // optional
+const char* MQTT_PASSWORD = "yourpassword"; // optional
+
+// Device identifiers for HA auto-discovery
+const char* DEVICE_NAME = "esp32_led";  // unique name for the backend
+const char* DEVICE_FRIENDLY_NAME = "Desk lamp"; // useful name for the frontend
+
