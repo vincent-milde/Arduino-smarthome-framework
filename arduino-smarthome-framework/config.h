@@ -94,6 +94,9 @@
 //#define DEVICE_TYPE "sensor"
 //#define DEVICE_TYPE "switch"
 //#define DEVICE_TYPE "light"
+    //#define LIGHT_PIN 2   // Define the pin connected to the light
+    //define BRIGHTNESS_SUPPORT // Uncomment to enable brightness control
+    //define COLOR_SUPPORT      // Uncomment to enable color control (RGB lights)
 //#define DEVICE_TYPE "custom"
 
 /*
