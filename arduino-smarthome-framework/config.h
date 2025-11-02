@@ -117,7 +117,7 @@
    Notes:
    - Requires Home Assistant MQTT Discovery enabled.
    - Works best with DEVICE_TYPE set to "sensor", "switch", or "light".
-   - "custom" devices must define their own topics manually.
+   - "custom" devices must define their own discovery payload
    =============================================================== */
    
 #define AUTO_DISCOVERY     //enable or disable home assistant auto discovery

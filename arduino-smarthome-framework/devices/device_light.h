@@ -9,8 +9,6 @@
 #ifndef DEVICE_LIGHT_H
 #define DEVICE_LIGHT_H
 
-#include <Arduino.h>
-#include "config.h"      // DEVICE_NAME, DEVICE_ID, DEVICE_ROOM, etc.
 #include "framework.h"   // mqtt_subscribe, client
 
 // ==================== MQTT Topics ====================
@@ -56,6 +54,7 @@ uint8_t red, green, blue = 255; // For future color support
         }
         )json";
     #endif
+
     void light_handler(const char* topic, const char* payload) {
         String command = String(payload);
         command.trim();
@@ -83,6 +82,7 @@ uint8_t red, green, blue = 255; // For future color support
 
 
 #endif
+
 // ==================== Brightness Light ====================
 #if defined(BRIGHTNESS_SUPPORT) && !defined(COLOR_SUPPORT)
 #ifdef AUTO_DISCOVERY
@@ -103,6 +103,7 @@ uint8_t red, green, blue = 255; // For future color support
     }
     )json";
 #endif
+
 void light_handler(const char* topic, const char* payload) {
   String command = String(payload);
   command.trim();
@@ -206,7 +207,11 @@ void device_setup() {
   Serial.println("[LIGHT] Device setup...");
 
   mqtt_subscribe(COMMAND_TOPIC, light_handler);
-  client.publish(DISCOVERY_TOPIC, discovery_payload, true);
+
+  #ifdef AUTO_DISCOVERY
+    client.publish(DISCOVERY_TOPIC, discovery_payload, true);
+  #endif
+
   client.publish(AVAILABILITY_TOPIC, "online", true);
 }
 
