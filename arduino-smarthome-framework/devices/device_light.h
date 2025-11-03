@@ -9,7 +9,7 @@
 #ifndef DEVICE_LIGHT_H
 #define DEVICE_LIGHT_H
 
-#include "framework.h"   // mqtt_subscribe, client
+#include "src/framework.h"   // mqtt_subscribe, client
 
 // ==================== MQTT Topics ====================
 #define STATE_TOPIC       "home/" DEVICE_ID "/state"

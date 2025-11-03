@@ -91,13 +91,13 @@
    Uncomment ONE of the following:
    =============================================================== */
 
-//#define DEVICE_TYPE "sensor"
-//#define DEVICE_TYPE "switch"
-//#define DEVICE_TYPE "light"
-    //#define LIGHT_PIN 2   // Define the pin connected to the light
-    //define BRIGHTNESS_SUPPORT // Uncomment to enable brightness control
-    //define COLOR_SUPPORT      // Uncomment to enable color control (RGB lights)
-//#define DEVICE_TYPE "custom"
+//#define DEVICE_TYPE_SENSOR
+//#define DEVICE_TYPE_SWITCH
+#define DEVICE_TYPE_LIGHT
+    #define LIGHT_PIN 2   // Define the pin connected to the light
+    //#define BRIGHTNESS_SUPPORT // Uncomment to enable brightness control
+    //#define COLOR_SUPPORT      // Uncomment to enable color control (RGB lights)
+//#define DEVICE_TYPE_CUSTOM
 
 /*
  
@@ -141,25 +141,22 @@
 */
 
 // ==================== DEVICE TYPE LOGIC ====================
-#if defined(DEVICE_TYPE)
 
-  #if strcmp(DEVICE_TYPE, "sensor") == 0
+  #if defined(DEVICE_TYPE_SENSOR)
     #include "device_sensor.h"
   
-  #elif strcmp(DEVICE_TYPE, "switch") == 0
+  #elif defined(DEVICE_TYPE_SWITCH)
     #include "device_switch.h"
   
-  #elif strcmp(DEVICE_TYPE, "light") == 0
-    #include "device_light.h"
+  #elif defined(DEVICE_TYPE_LIGHT)
+    #include "devices/device_light.h"
 
-  #elif strcmp(DEVICE_TYPE, "custom") == 0
+  #elif defined(DEVICE_TYPE_CUSTOM)
     #include "device_custom.h"
 
   #else
-    #error "Unsupported DEVICE_TYPE! Allowed: sensor, switch, light, custom"
+    #error "DEVICE_TYPE not defined! Please define it in config.h"
   #endif
 
-#else
-  #error "DEVICE_TYPE not defined! Please define it in config.h"
-#endif
+
 
