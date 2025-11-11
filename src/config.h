@@ -59,8 +59,8 @@
 
 #define MQTT_SERVER   "192.168.1.10"        // Your MQTT Broker IP Address
 #define MQTT_PORT 1883                      // Your MQTT Broker Port  
-//#define MQTT_USER     "homeassistant"     // optional
-//#define MQTT_PASSWORD "yourpassword"      // optional
+#define MQTT_USER     "homeassistant"     // optional
+#define MQTT_PASSWORD "yourpassword"      // optional
  
 
 /*

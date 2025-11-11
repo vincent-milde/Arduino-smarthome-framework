@@ -3,10 +3,10 @@
 
 void setup(){
     framework_setup();
-    user_setup();
+    device_setup();
 } 
 
 void loop(){
     framework_loop();
-    user_loop() ;
+    device_loop() ;
 }

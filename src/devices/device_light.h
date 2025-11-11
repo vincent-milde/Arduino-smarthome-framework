@@ -55,8 +55,8 @@ uint8_t red, green, blue = 255; // For future color support
         )json";
     #endif
 
-    void light_handler(const char* topic, const char* payload) {
-        String command = String(payload);
+    void light_handler(String payload) {
+        String command = payload;
         command.trim();
         command.toUpperCase();
 

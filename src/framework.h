@@ -5,7 +5,7 @@
  * Handles Last Will, auto-reconnect, and callbacks.
  * 
  * Enjoy your coding journey! No delays allowed. Use millis() only.
- **************************************************************************/
+ *************************************************************************/
 
 #pragma once
 #include <WiFi.h>
@@ -39,9 +39,9 @@ void mqtt_internal_callback(char* topic, byte* payload, unsigned int length) {
     String message;
     for (unsigned int i = 0; i < length; i++) message += (char)payload[i];
 
-    for (int i = 0; i < handlerCount; i++) {
-        if (String(topic) == handlers[i].topic) {
-            handlers[i].callback(message);
+    for (int i = 0; i < handlerCount; i++) {     //loop through all the topics
+        if (String(topic) == handlers[i].topic) {   
+            handlers[i].callback(message);      //parse the payload into the callback function
             return;
         }
     }
