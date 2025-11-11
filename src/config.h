@@ -93,8 +93,9 @@
 
 //#define DEVICE_TYPE_SENSOR
 //#define DEVICE_TYPE_SWITCH
-#define DEVICE_TYPE_LIGHT
-    #define LIGHT_PIN 2   // Define the pin connected to the light
+  //#define SWITCH_PIN 5  // Define the pin connected to the relay
+//#define DEVICE_TYPE_LIGHT
+    //#define LIGHT_PIN 2   // Define the pin connected to the light
     //#define BRIGHTNESS_SUPPORT // Uncomment to enable brightness control
     //#define COLOR_SUPPORT      // Uncomment to enable color control (RGB lights)
 //#define DEVICE_TYPE_CUSTOM
@@ -141,22 +142,31 @@
 */
 
 // ==================== DEVICE TYPE LOGIC ====================
+/* Ensure exactly one DEVICE_TYPE_* is defined. */
 
-  #if defined(DEVICE_TYPE_SENSOR)
-    #include "device_sensor.h"
-  
-  #elif defined(DEVICE_TYPE_SWITCH)
-    #include "device_switch.h"
-  
-  #elif defined(DEVICE_TYPE_LIGHT)
-    #include "devices/device_light.h"
+#if (defined(DEVICE_TYPE_SENSOR) + defined(DEVICE_TYPE_SWITCH) + \
+     defined(DEVICE_TYPE_LIGHT) + defined(DEVICE_TYPE_CUSTOM)) > 1
+  #error "Multiple DEVICE_TYPE_* defined. Please define only one device type in config.h"
+#endif
 
-  #elif defined(DEVICE_TYPE_CUSTOM)
-    #include "device_custom.h"
+#if (defined(DEVICE_TYPE_SENSOR) + defined(DEVICE_TYPE_SWITCH) + \
+     defined(DEVICE_TYPE_LIGHT) + defined(DEVICE_TYPE_CUSTOM)) == 0
+  #error "DEVICE_TYPE not defined! Please define one DEVICE_TYPE_* in config.h"
+#endif
 
-  #else
-    #error "DEVICE_TYPE not defined! Please define it in config.h"
-  #endif
+#if defined(DEVICE_TYPE_SENSOR)
+  #include "device_sensor.h"
+
+#elif defined(DEVICE_TYPE_SWITCH)
+  #include "device_switch.h"
+
+#elif defined(DEVICE_TYPE_LIGHT)
+  #include "devices/device_light.h"
+
+#elif defined(DEVICE_TYPE_CUSTOM)
+  #include "device_custom.h"
+
+#endif
 
 
 

@@ -20,6 +20,11 @@ mqtt_topic_handler_t handlers[MAX_TOPICS];
 int handlerCount = 0;
 
 // ==================== Internal State ====================
+// Track WiFi reconnect attempts
+static unsigned long lastWifiAttempt = 0;
+static const unsigned long WIFI_RECONNECT_INTERVAL = 5000; // ms
+
+//track MQTT reconnect attempts
 static unsigned long lastReconnectAttempt = 0;
 
 // ==================== MQTT Functions ====================
@@ -80,12 +85,8 @@ void framework_setup() {
 
     // Connect WiFi
     WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
-    Serial.print("[WiFi] Connecting");
-    while (WiFi.status() != WL_CONNECTED) {
-        delay(200);
-        Serial.print(".");
-    }
-    Serial.println("\n[WiFi] Connected! IP: " + WiFi.localIP().toString());
+    Serial.println("[WiFi] Connecting...");
+    lastWifiAttempt = millis();
 
     // Setup MQTT
     client.setServer(MQTT_SERVER, MQTT_PORT);
@@ -95,8 +96,13 @@ void framework_setup() {
 // ==================== Framework Loop ====================
 void framework_loop() {
     if (WiFi.status() != WL_CONNECTED) {
-        Serial.println("[WiFi] Disconnected! Attempting reconnect...");
-        WiFi.reconnect();
+        //try to reconnect after a fixed time
+        if (millis() - lastWifiAttempt >= WIFI_RECONNECT_INTERVAL) {
+            Serial.println("[WiFi] Disconnected! Attempting reconnect...");
+            WiFi.reconnect();
+            lastWifiAttempt = millis();
+        }
+        // Skip MQTT until WiFi is connected
         return;
     }
 
