@@ -10,7 +10,6 @@
 #pragma once
 #include <WiFi.h>
 #include <PubSubClient.h>
-#include "config.h" // MAX_TOPICS, WIFI_SSID, MQTT_SERVER, etc.
 #include "framework_types.h"
 
 // ==================== Global Objects ====================
