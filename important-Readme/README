@@ -1,0 +1,25 @@
+Contibuters:
+MILDE Vincent
+SCHASCHL Yannick
+WEINER Moritz
+
+
+"config.h"
+Bei dem Programm geht es allgemein um ein SmartHome. In der Konfiguration "config.h" können WIFI Settings, MQTT Settings (ein Publish/Subscribe-Modell) und Device Settings durchgeführt werden um das SmartHome auf sich selbst abstimmen zu können. In der Konfiguration kann momentan die Lichthelligkeit und Lichtfarbe der LEDs und Switches für z.B. das Licht konfiguriert werden. Das SmartHome ist ohne Programmiererfahrung aufgrund des detailierten Manuals in "config.h" sehr einfach zu bedienen. 
+
+Bsp: LED Configuration
+    In "config.h" will der Client die brightness der LED einstellen. Dadurch wird der Programmcode in "device_light.h" für die brightness sichtbar und ausgeführt. In dem Fall ist der Programmcode für die colour der LED nicht sichtbar und wird sozusagen automatisch "auskommentiert".
+
+"framework_types.h"
+//noch unklar
+
+
+"framework.h"
+Allgemein ist das ein Progrmm welches die WIFI und MQTT Verbindungen, Callbacks von Topics und Verarbeitungen von Nachrichten dauerhaft überprüft.
+
+Am Anfang wird die WIFI-Verbindung automatisch gestartet. Der Status wird jede 5 Sekunden überprüft um sich bei einem Internetausfall wieder neu zu Verbinden.
+
+Es wird eine MQTT-Vrbindung aufgebaut und schickt die Bestätigung ob der Status online oder offline is. Der Status wird ebenfalls all 5 Sekunden überprüft.
+
+Topics werden ebenfalls verwaltet.  Es werden Topics gespeichert und abonniert und weiters wieder aufgerufen wenn eine Nachricht ankommt.
+

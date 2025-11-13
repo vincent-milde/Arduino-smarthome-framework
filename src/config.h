@@ -94,9 +94,9 @@
 //#define DEVICE_TYPE_SENSOR
 //#define DEVICE_TYPE_SWITCH
   //#define SWITCH_PIN 5  // Define the pin connected to the relay
-//#define DEVICE_TYPE_LIGHT
-    //#define LIGHT_PIN 2   // Define the pin connected to the light
-    //#define BRIGHTNESS_SUPPORT // Uncomment to enable brightness control
+#define DEVICE_TYPE_LIGHT
+    #define LIGHT_PIN 2   // Define the pin connected to the light
+    #define BRIGHTNESS_SUPPORT // Uncomment to enable brightness control
     //#define COLOR_SUPPORT      // Uncomment to enable color control (RGB lights)
 //#define DEVICE_TYPE_CUSTOM
 
