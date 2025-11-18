@@ -4,7 +4,6 @@
  * Fully non-blocking, supports multiple topics and device types.
  * Handles Last Will, auto-reconnect, and callbacks.
  * 
- * Enjoy your coding journey! No delays allowed. Use millis() only.
  *************************************************************************/
 
 #pragma once

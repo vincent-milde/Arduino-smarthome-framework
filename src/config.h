@@ -84,7 +84,7 @@
 
    Supported options:
      "sensor"     - For devices that publish values (temperature, etc.)
-     "switch"     - For controllable outputs (relays, LEDs)
+     "switch"     - For controllable outputs (relays, LEDs) - Normally open
      "light"      - For dimmable or RGB lights
      "custom"     - For manual MQTT handling (advanced users) -> edit custom.h
 
@@ -92,8 +92,8 @@
    =============================================================== */
 
 //#define DEVICE_TYPE_SENSOR
-//#define DEVICE_TYPE_SWITCH
-  //#define SWITCH_PIN 5  // Define the pin connected to the relay
+#define DEVICE_TYPE_SWITCH
+  #define SWITCH_PIN 2  // Define the pin connected to the relay
 //#define DEVICE_TYPE_LIGHT
     //#define LIGHT_PIN 2   // Define the pin connected to the light
     //#define BRIGHTNESS_SUPPORT // Uncomment to enable brightness control
@@ -158,7 +158,7 @@
   #include "device_sensor.h"
 
 #elif defined(DEVICE_TYPE_SWITCH)
-  #include "device_switch.h"
+  #include "devices/device_switch.h"
 
 #elif defined(DEVICE_TYPE_LIGHT)
   #include "devices/device_light.h"

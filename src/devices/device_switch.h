@@ -10,7 +10,6 @@
 #define DEVICE_SWITCH_H
 
 #include <Arduino.h>
-#include "config.h"      // DEVICE_NAME, DEVICE_ID, DEVICE_ROOM, etc.
 #include "framework.h"   // mqtt_subscribe, client
 
 // ==================== MQTT Topics ====================
@@ -49,19 +48,19 @@ const char* discovery_payload = R"json(
 )json";
 
 // ==================== Command Handler ====================
-void switch_command_handler(const char* topic, const char* payload) {
-    String command = String(payload);
+void switch_command_handler(String payload) {
+    String command = payload;
     command.trim();
     command.toUpperCase();
 
     if (command == "ON") {
         switchState = true;
-        digitalWrite(RELAY_PIN, HIGH);
+        digitalWrite(SWITCH_PIN, HIGH);
         Serial.println("[SWITCH] Turned ON");
     } 
     else if (command == "OFF") {
         switchState = false;
-        digitalWrite(RELAY_PIN, LOW);
+        digitalWrite(SWITCH_PIN, LOW);
         Serial.println("[SWITCH] Turned OFF");
     } 
     else {
@@ -76,7 +75,7 @@ void switch_command_handler(const char* topic, const char* payload) {
 
 // ==================== Setup ====================
 void device_setup() {
-    pinMode(RELAY_PIN, OUTPUT);
+    pinMode(SWITCH_PIN, OUTPUT);
 
     Serial.println("[SWITCH] Device setup...");
     mqtt_subscribe(COMMAND_TOPIC, switch_command_handler);
